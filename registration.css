@@ -1,0 +1,51 @@
+body{
+    background-color: #5B4644;
+}
+.inputs{
+    font-size: 30px;
+}
+#link2{
+    display:inline;
+    text-decoration: none;
+}
+#link3{
+    display:inline;
+    text-decoration: none;
+}
+.header{
+    text-align: center;
+    font-size: 20px;
+    background-color: #DAB7A3;
+}
+#link2{
+    margin-right: 5px;
+}
+#link3{
+    margin-left: 5px;
+}
+input{
+    width: 100%
+}
+.container-fluid{
+
+    background-color: #5B4644;
+    color: black;
+}
+#state{
+    width:100%
+}
+column2{
+    display: inline;
+    margin-right: 3%;
+    vertical-align: top;
+    text-align: center;
+}
+#married{
+    verticle-align: middle;
+}
+#rmarried{
+    verticle-align: middle;
+}
+input[type=radio]{
+    display: inline-block;
+}
