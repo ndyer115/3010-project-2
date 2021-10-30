@@ -10,7 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="registration.js"></script>
 </head>
-<body>
+<body onload="registerHandlers()">
+<form id="myform">
 <nav class="header">
     <div id = "top">
         <h1>Registration Page!</h1>
@@ -29,42 +30,55 @@
         <div class ="container-fluid">
             <div class="row content">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <div>
+                    <div id="user1" class="form-group">
                         <label for="UserName">Username:</label>
-                        <input type="text" name = "UserName" id = "UserName"/>
+                        <input type="text" name = "UserName" id = "UserName" class="form-control" required/>
+                        <span id="userlen" class="help-block hide">Username must be between 6-50 characers.</span>
                     </div>
-                    <div>
+                    <div id="pass" class="form-group">
                         <label for="Password">Password:</label>
-                        <input type="password" name = "Password" id = "Password"/>
+                        <input type="password" name = "Password" id = "Password" class="form-control" required/>
+                        <span id="passErr" class="help-block hide">You did not enter a password.
+            Please enter one now.</span>
+                        <span id="passlen" class="help-block hide">Password must be between 8-50 characers and contain 1 uppercase, 1 lowercase, and 1 digit character.</span>
                     </div>
-                    <div>
+                    <div id="reppass" class="form-group">
                         <label for="Rpassword">Repeat Password:</label>
-                        <input type="password" name = "Rpassword" id = "Rpassword"/>
+                        <input type="password" name = "Rpassword" id = "Rpassword" class="form-control" required/>
+                        <span id="verPassErr" class="help-block hide">The two passwords you entered are not the same.
+            Please re-enter both now.</span>
                     </div>
-                    <div>
-                        <label for="FirstName"> First Name:</label>
-                        <input type="text" name = "FirstName" id="Firstname"/>
-                    </div>
-                    <div>
-                        <label for="LastName"> Last Name:</label>
-                        <input type="text" name = "LastName" id="LastName"/>
-                    </div>
-                    <div>
-                        <label for="Address1"> Address Line 1:</label>
-                        <input type="text" name = "Address1" id="Address1"/>
-                    </div>
-                    <div>
-                        <label for="Address2"> Address Line 2:</label>
-                        <input type="text" name = "Address2" id="Address2"/>
-                    </div>
-                    <div>
-                        <label for="City"> City:</label>
-                        <input type="text" name = "City" id="City"/>
-                    </div>
-                    <div><label for="State">Choose your state:</label>
 
-                        <select name="state" id="state">
-                            <option value="select">State:</option>
+                    <div id="fname" class="form-group">
+                        <label for="FirstName"> First Name:</label>
+                        <input type="text" name = "FirstName" id="Firstname" class="form-control" required/>
+                        <span id="fnameerr" class="help-block hide">Name must be 1-50 characers.</span>
+                    </div>
+                    <div id ="lname" class="form-group">
+                        <label for="LastName"> Last Name:</label>
+                        <input type="text" name = "LastName" id="LastName" class="form-control" required/>
+                        <span id = lnameerr class="help-block hide">Name must be 1-50 characters.</span>
+                    </div>
+                    <div id ="add1" class="form-group">
+                        <label for="Address1"> Address Line 1:</label>
+                        <input type="text" name = "Address1" id="Address1" class="form-control" required/>
+                        <span id="add1err" class="help-block hide">Address must be 1-100 characters.</span>
+                    </div>
+                    <div id ="add2" class="form-group">
+                        <label for="Address2"> Address Line 2:</label>
+                        <input type="text" name = "Address2" id="Address2" class="form-control"/>
+                        <span id="add2err" class ="help-block hide">Address must be under 100 characters.</span>
+                    </div>
+                    <div id="citydiv" class="form-group">
+                        <label for="City"> City:</label>
+                        <input type="text" name = "City" id="City" class="form-control" required/>
+                        <span id="cityerr" class="help-block hide">City must be 1-50 characters.</span>
+                    </div>
+                    <p>
+                    </p>
+                    <div id="satediv" class="form-grouphljs xml"><label for="State">Choose your state:</label>
+                        <select name="state" id="state" required>
+                            <option value="">State:</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
                             <option value="AZ">Arizona</option>
@@ -118,25 +132,28 @@
                             <option value="WY">Wyoming</option>
                         </select>
                     </div>
-                    <input type="reset" value="Reset Data"/>
+                    <input type="reset" value="Reset Data" class="btn-primary"/>
                 </div>
 
 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column 2">
                     <div>
-                        <div>
+                        <div id="zip" class="form-group">
                             <label for="zipcode"> Zipcode:</label>
-                            <input type="text" name = "zipcode" id="zipcode"/>
+                            <input type="text" name = "zipcode" id="zipcode" class = "form-control"placeholder="xxxxx or xxxxx-xxxxx" OnInput="add_hyphen()" required/>
+                            <span id="ziperr" class = "help-block hide">Zipcode must be between 5-10 characters.</span>
                         </div>
-                        <div>
+                        <div id="num" class="form-group">
                             <label for="phonenumber"> Phone number:</label>
-                            <input type="text" name = "phonenumber" id="phonenumber"/>
+                            <input type="tel" name = "phonenumber" id="phonenumber" placeholder="xxx-xxx-xxxx" OnInput="add_hyphen2()" class="form-control" required/>
+                            <span id="numerr" class = "help-block hide">Invalid phone number.</span>
                         </div>
-                        <div>
+                        <div id = "emaildiv" class="form-group hljs xml">
                             <label for="email"> Email Address:</label>
-                            <input type="text" name = "email" id="email"/>
+                            <input type="email" required name = "email" id="email" class="form-control"/>
+                            <span id="emailerr" class = "help-block hide">Invalid email address.</span>
                         </div>
-                        <input type="radio"
+                        <input type="radio" required
                                name="gender" id="maleGender"
                                value="male"/> <label for="maleGender">Male</label><br/>
                         <input type="radio"
@@ -147,20 +164,21 @@
                                value="other"/> <label for="otherGender">Other</label>
                     </div>
 
-                    <input type="radio" name="married" id="married" value="married"/>
+                    <input required type="radio" name="married" id="married" value="married"/>
                     <label for="married" id="rmarried">Married</label><br/>
 
-                    <input type="radio" name="married" id="notmarried" value="not married"/>
+                    <input required type="radio" name="married" id="notmarried" value="not married"/>
                     <label for="notmarried">Not married</label><br/>
 
 
-                    <div>
+                    <div id="bdaydiv" class="form-group">
                         <label for="birthDay">Date of birth:</label><br/>
-                        <input id="birthDay" type="date" name="birthDay"/>
+                        <input id="birthDay" type="date" name="birthDay" class="form-control" required/>
+                        <span id="bdayerr" class="help-block hide">Please enter your birthday.</span>
                     </div>
-                    <div>
+                    <div id="sub">
 
-                        <input type="submit" value="Submit Data"/>
+                        <input  disabled = "disabled" type="submit" value="Submit Data" id="submitButton" class="btn btn-primary"/>
                     </div>
                 </div>
 
@@ -172,5 +190,6 @@
 
 </div>
 </div>
+</form>
 </body>
 </html>
